@@ -72,7 +72,7 @@ VALUES ('Pippo', 'Tivoli', '1992-01-01', 1, 'ABCDE123456', '2024-01-01', '123456
 ### 11 Eliminare dalla tabella studenti il record creato precedentemente al punto ###
 ```SQL
 DELETE FROM students
-WHERE name = 'Mario' AND surname = 'Rossi' AND date_of_birth = '1992-01-01';
+WHERE name = 'Pippo' AND surname = 'Tivoli' AND date_of_birth = '1992-01-01';
 ```
 <!-- 0	8	00:26:37	DELETE FROM students
  WHERE name = 'Pippo' AND surname = 'Tivoli' AND date_of_birth = '1992-01-01'	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column. 

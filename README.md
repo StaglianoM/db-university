@@ -3,7 +3,7 @@
 ```SQL
 
 SELECT * 
-FROM `db-university`.students
+FROM students
 WHERE date_of_birth LIKE '1990%';
 ```
 
@@ -11,7 +11,7 @@ WHERE date_of_birth LIKE '1990%';
 
 ```SQL
 SELECT * 
-FROM `db-university`.courses
+FROM courses
 WHERE cfu > 10;
 ```
 
@@ -19,21 +19,21 @@ WHERE cfu > 10;
 
 ```SQL
 SELECT * 
-FROM `db-university`.students
+FROM students
 WHERE YEAR(CURDATE()) - YEAR(date_of_birth) > 30;
 ```
 
 ### 4 Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea  ###
 ```SQL
 SELECT * 
-FROM `db-university`.courses
+FROM courses
 WHERE year = 1 AND period = 'I semestre';
 ```
 
 ### 5 Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 ###
 ```SQL
 SELECT * 
-FROM `db-university`.exams
+FROM exams
 WHERE DATE(date) = '2020-06-20' 
   AND TIME(hour) > '14:00:00';
 ```
@@ -41,7 +41,7 @@ WHERE DATE(date) = '2020-06-20'
 ### 6 Selezionare tutti i corsi di laurea magistrale ###
 ```SQL
 SELECT * 
-FROM `db-university`.degrees
+FROM degrees
 WHERE level LIKE 'magistrale'
 ```
 
@@ -66,14 +66,15 @@ VALUES ('Pippo', 'Tivoli', '1992-01-01', 1, 'ABCDE123456', '2024-01-01', '123456
 
 ### 10 Cambiare il numero dell’ufficio del professor Pietro Rizzo in 126 ###
 ```SQL
-
+UPDATE `techers`
+SET `office_number` = '126'
+WHERE `id` = 
 ```
 
 ### 11 Eliminare dalla tabella studenti il record creato precedentemente al punto ###
 ```SQL
 DELETE FROM students
-WHERE name = 'Pippo' AND surname = 'Tivoli' AND date_of_birth = '1992-01-01';
+WHERE id = XXXX;
 ```
-<!-- 0	8	00:26:37	DELETE FROM students
- WHERE name = 'Pippo' AND surname = 'Tivoli' AND date_of_birth = '1992-01-01'	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column. 
- To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.000 sec //
+<!-- DELETE FROM students
+WHERE name = 'Pippo' AND surname = 'Tivoli' AND date_of_birth = '1992-01-01'; -->

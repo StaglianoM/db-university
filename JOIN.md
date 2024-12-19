@@ -1,37 +1,69 @@
 ### 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia ###
+
 ```SQL
-SELECT s.*
-FROM students s
-JOIN degrees d ON s.degree_id = d.id
-WHERE d.name LIKE '%Economia%';
+SELECT `s`.*
+FROM `students` AS `s`
+JOIN `degrees` AS `d` ON `s`.`degree_id` = `d`.`id`
+WHERE `d`.`name` LIKE '%Economia%';
 ```
 
 
 ### 2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze ###
+
 ```SQL
-SELECT d.*
-FROM degrees d
-JOIN departments dep ON d.department_id = dep.id
-WHERE d.name LIKE '%Magistrale%' AND dep.name LIKE '%Neuroscienze%';
+SELECT `d`.*
+FROM `degrees` AS `d`
+JOIN `departments` AS `dep` ON `d`.`department_id` = `dep`.`id`
+WHERE `d`.`name` LIKE '%Magistrale%' AND `dep`.`name` LIKE '%Neuroscienze%';
+
 
 ```
 
 
 ### 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+
 ```SQL
+SELECT c.*
+FROM `courses` AS `c`
+JOIN `course_teacher` AS `ct` ON c.id = ct.course_id
+JOIN `teachers` AS `t` ON ct.teacher_id = t.id
+WHERE t.name = 'Fulvio' AND t.surname = 'Amato';
 
 ```
 
 
 ### 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome ###
-```SQL
 
+```SQL
+SELECT 
+    `s`.*, `d`.`name` AS `degree_name`, `dep`.`name` AS `department_name`
+FROM 
+    `students` AS `s`
+JOIN 
+    `degrees` AS `d` ON `s`.`degree_id` = `d`.`id`
+JOIN 
+    `departments` AS `dep` ON `d`.`department_id` = `dep`.`id`
+ORDER BY 
+    `s`.`surname` ASC, `s`.`name` ASC;
 ```
 
 
 ### 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti ###
-```SQL
 
+```SQL
+SELECT 
+    `d`.`name` AS `degree_name`,
+    `c`.`name` AS `course_name`,
+    `t`.`name` AS `teacher_name`,
+    `t`.`surname` AS `teacher_surname`
+FROM 
+    `degrees` AS `d`
+JOIN 
+    `courses` AS `c` ON `d`.`id` = `c`.`degree_id`
+JOIN 
+    `course_teacher` AS `ct` ON `c`.`id` = `ct`.`course_id`
+JOIN 
+    `teachers` AS `t` ON `ct`.`teacher_id` = `t`.`id`;
 ```
 
 

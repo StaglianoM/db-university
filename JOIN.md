@@ -9,6 +9,10 @@ WHERE d.name LIKE '%Economia%';
 
 ### 2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze ###
 ```SQL
+SELECT d.*
+FROM degrees d
+JOIN departments dep ON d.department_id = dep.id
+WHERE d.name LIKE '%Magistrale%' AND dep.name LIKE '%Neuroscienze%';
 
 ```
 
